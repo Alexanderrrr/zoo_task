@@ -27,6 +27,7 @@
       <button type="submit" class="btn btn-default">Add Animal</button>
     </form>
   <hr>
+  <h3>Animals Table</h3>
     <table class="table">
       <thead class="thead-dark">
         <tr>
@@ -51,6 +52,28 @@
           </th>
           <th>
             <button @click="removeAnimal(animal)" class="btn btn-danger">Remove</button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3>Sectors Table</h3>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Index</th>
+          <th>Name</th>
+          <th>Surface</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(sector,index) in sectors" :key="index">
+          <th>{{ index + 1 }}</th>
+          <td>{{ sector.name }}</td>
+          <td>{{ sector.surface }}</td>
+          <th>
+            <button @click="showAnimals(sector.name)" class="btn btn-default">Show Animals List</button>
           </th>
         </tr>
       </tbody>
@@ -100,6 +123,11 @@ export default {
     addAnimal(){
       this.animals.push(this.newAnimal)
       this.newAnimal = {}
+    },
+
+    showAnimals(sector){
+      let animalsInSector = this.animals.filter(animal => animal.sector.name === sector);
+      alert(animalsInSector.map(animal => animal.name))
     }
   }
 }
