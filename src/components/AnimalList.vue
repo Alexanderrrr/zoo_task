@@ -7,6 +7,7 @@
           <th>Species</th>
           <th>Name</th>
           <th>Birth</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -15,6 +16,9 @@
           <td>{{ animal.species }}</td>
           <td>{{ animal.name }}</td>
           <td>{{ animal.birth != "" ? animal.birth : "Unknown" }}</td>
+          <th>
+            <button @click="removeAnimal(animal)" class="btn btn-danger">Remove</button>
+          </th>
         </tr>
       </tbody>
     </table>
@@ -35,6 +39,13 @@ export default {
         {species: "reptiles", name: "aligator", birth: "01.01.1800"},
       ],
     };
+  },
+
+  methods: {
+    removeAnimal(animal){
+      let index = this.animals.indexOf(animal)
+      this.animals.splice(index,1)
+    }
   }
 }
 </script>
