@@ -14,7 +14,7 @@
           <th>{{ index + 1 }}</th>
           <td>{{ animal.species }}</td>
           <td>{{ animal.name }}</td>
-          <td>{{ animal.birth  }}</td>
+          <td>{{ animal.birth != "" ? animal.birth : "Unknown" }}</td>
         </tr>
       </tbody>
     </table>
@@ -28,7 +28,7 @@ export default {
   data(){
     return {
       animals: [
-        {species: "mammals", name: "dog", birth: "01.01.1990"},
+        {species: "mammals", name: "dog", birth: ""},
         {species: "mammals", name: "horse", birth: "01.01.2000"},
         {species: "amphibians", name: "frog", birth: ""},
         {species: "reptiles", name: "snake", birth: ""},
