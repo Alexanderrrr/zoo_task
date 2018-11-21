@@ -1,5 +1,23 @@
 <template>
   <div class="container">
+    <h3>Create Animal</h3>
+
+    <form @submit.prevent='addAnimal()'>
+      <div class="form-group">
+        <label>Enter species</label>
+        <input v-model="newAnimal.species" class="form-control form-control-sm" placeholder="species">
+      </div>
+      <div class="form-group">
+        <label>Enter name of animal</label>
+        <input v-model="newAnimal.name" class="form-control form-control-sm" placeholder="name">
+      </div>
+      <div class="form-group">
+        <label>Enter day of birth</label>
+        <input v-model="newAnimal.birth" class="form-control form-control-sm" placeholder="birth">
+      </div>
+      <button type="submit" class="btn btn-default">Add Animal</button>
+    </form>
+  <hr>
     <table class="table">
       <thead class="thead-dark">
         <tr>
@@ -16,7 +34,7 @@
           <th>{{ index + 1 }}</th>
           <td>{{ animal.species }}</td>
           <td>{{ animal.name }}</td>
-          <td>{{ animal.birth != "" ? animal.birth : "Unknown" }}</td>
+          <td>{{ animal.birth != '' ? animal.birth : "Unknown" }}</td>
           <th>
             <button @click="moveAnimalToTop(animal)" class="btn btn-success">Move to top</button>
           </th>
@@ -35,6 +53,7 @@
 export default {
   data(){
     return {
+      newAnimal: {},
       animals: [
         {species: "mammals", name: "dog", birth: ""},
         {species: "mammals", name: "horse", birth: "01.01.2000"},
@@ -55,6 +74,11 @@ export default {
       let index = this.animals.indexOf(animal);
       this.animals.splice(index,1);
       this.animals.unshift(animal);
+    },
+
+    addAnimal(){
+      this.animals.push(this.newAnimal)
+      this.newAnimal = {}
     }
   }
 }
